@@ -1,22 +1,34 @@
-import { hrtime } from "process";
-
-class Human {
-  public name: string;
-  private age: number;
-  public gender: string;
-  constructor(name: string, age: number, gender: string) {
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
+class Block {
+  public index: number;
+  public hash: string;
+  public previousHash: string;
+  public data: string;
+  public timestamp: number;
+  constructor(
+    index: number,
+    hash: string,
+    previousHash: string,
+    data: string,
+    timestamp: number
+  ) {
+    this.index = index;
+    this.hash = hash;
+    this.previousHash = previousHash;
+    this.data = data;
+    this.timestamp = timestamp;
   }
 }
 
-const eunchong = new Human("eunchong", 23, "male");
+const genesisBlock: Block = new Block(
+  0,
+  "2022222222022",
+  "",
+  "hello",
+  202202010555
+);
 
-const sayHi = (person: Human): string => {
-  return `Hello ${person.name}, you are ${person.age}, you are ${person.gender}!!`;
-};
+let blockChain: [Block] = [genesisBlock];
 
-console.log(sayHi(eunchong));
+console.log(blockChain);
 
 export {};
