@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var sayHi = function (name, age, gender) {
-    return "Hello ".concat(name, ", you are ").concat(age, ", you are ").concat(gender, "!!");
+var person = {
+    name: "eunchong",
+    age: 23,
+    gender: "male",
 };
-console.log(sayHi("eunchong", 23, "male"));
+var sayHi = function (person) {
+    return "Hello ".concat(person.name, ", you are ").concat(person.age, ", you are ").concat(person.gender, "!!");
+};
+console.log(sayHi(person));
