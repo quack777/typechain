@@ -38,4 +38,12 @@ var blockChain = [genesisBlock];
 var getBlockchain = function () { return blockChain; };
 var getLatestBlock = function () { return blockChain[blockChain.length - 1]; };
 var getNewTimeStamp = function () { return Math.round(new Date().getTime() / 1000); };
-console.log(getLatestBlock());
+var createNewBlock = function (data) {
+    var previousBlock = getLatestBlock();
+    var newIndex = previousBlock.index + 1;
+    var newTimeStmap = getNewTimeStamp();
+    var newHash = Block.calculateBlockHash(newIndex, previousBlock.hash, newTimeStmap, data);
+    var newBlock = new Block(newIndex, newHash, previousBlock.hash, data, newTimeStmap);
+    return newBlock;
+};
+console.log(createNewBlock("hello"), createNewBlock("bye bye"));

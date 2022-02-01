@@ -1,3 +1,4 @@
+import { timeStamp } from "console";
 import * as CryptoJS from "crypto-js";
 
 class Block {
@@ -46,6 +47,26 @@ const getLatestBlock = (): Block => blockChain[blockChain.length - 1];
 
 const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
 
-console.log(getLatestBlock());
+const createNewBlock = (data: string): Block => {
+  const previousBlock: Block = getLatestBlock();
+  const newIndex: number = previousBlock.index + 1;
+  const newTimeStmap: number = getNewTimeStamp();
+  const newHash: string = Block.calculateBlockHash(
+    newIndex,
+    previousBlock.hash,
+    newTimeStmap,
+    data
+  );
+  const newBlock: Block = new Block(
+    newIndex,
+    newHash,
+    previousBlock.hash,
+    data,
+    newTimeStmap
+  );
+  return newBlock;
+};
+
+console.log(createNewBlock("hello"), createNewBlock("bye bye"));
 
 export {};
